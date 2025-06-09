@@ -42,13 +42,15 @@ async def addbday(ctx, user_id: int, month: int, day: int):
 
 @bot.command()
 async def ping(ctx):
-    @bot.command()
+    await ctx.send("🏓 Pong! I'm alive.")
+
+@bot.command()
 async def testbday(ctx):
     test_user_ids = list(birthdays.keys())
     if not test_user_ids:
         await ctx.send("❌ No birthdays found to test.")
         return
-    
+
     for user_id in test_user_ids:
         user = await bot.fetch_user(int(user_id))
         message = f"🎉 Happy Birthday, {user.mention}! 🎂\nWishing you a day filled with love, laughter, and unforgettable memories. May your journey ahead be as amazing as you are."
@@ -61,7 +63,6 @@ async def testbday(ctx):
     
     await ctx.send("✅ Test birthday message sent.")
 
-    await ctx.send("🏓 Pong! I'm alive.")
 
 @tasks.loop(hours=24)
 async def check_birthdays():
